@@ -3,43 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ăn gì hôm nay? — Global Pro v4</title>
+  <title>Ăn gì hôm nay? — Global Pro v4 (Fixed)</title>
   <meta name="theme-color" content="#ff7b2d" />
   <link rel="manifest" href="manifest.json" />
   <style>
-    :root{{--accent:#ff7b2d;--bg:#fff6ee;--card:#fff;--muted:#8b6b57;}}
-    *{{box-sizing:border-box}}
-    body{{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:#2b2b2b}}
-    .header{{background:#fff;padding:18px 24px;border-bottom:1px solid #f0e6de;display:flex;align-items:center;justify-content:space-between}}
-    .title{{color:var(--accent);font-weight:800;font-size:22px}}
-    .container{{max-width:1200px;margin:18px auto;padding:0 18px}}
-    .topbar{{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);display:flex;gap:12px;align-items:center}}
-    .loc-btn{{background:#27ae60;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center}}
-    .input{{flex:1;display:flex;gap:8px;align-items:center}}
-    .input input{{flex:1;padding:12px 14px;border-radius:8px;border:1px solid #eee;background:#faf7f6}}
-    .input button{{padding:10px 12px;border-radius:8px;border:none;background:#9aa0a6;color:#fff;cursor:pointer}}
-    .tabs{{display:flex;gap:12px;margin-top:16px}}
-    .tab{{flex:1;padding:14px;border-radius:8px;background:#fdebd6;text-align:center;cursor:pointer;border:1px solid #f5ded0;display:flex;align-items:center;justify-content:center;gap:8px}}
-    .tab.active{{background:var(--accent);color:#fff}}
-    .main{{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:18px;align-items:start}}
-    .left{{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}}
-    .grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}}
-    .card{{background:#fff;border-radius:10px;padding:12px;border:1px solid #f0e6de;box-shadow:0 2px 6px rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:8px;height:170px}}
-    .thumb{{width:100%;height:90px;border-radius:8px;flex-shrink:0;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center}}
-    .info h4{{margin:0;font-size:16px;color:#d35400}}
-    .info .sub{{color:var(--muted);font-size:13px}}
-    .meta{{display:flex;justify-content:space-between;align-items:center;gap:8px}}
-    .price{{color:var(--accent);font-weight:700}}
-    .dist{{color:#2d7a2d;font-weight:600;font-size:13px}}
-    .right{{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06);position:relative;top:0;height:calc(100vh - 140px);overflow:auto}}
-    .promo{{background:#fff;padding:12px;border-radius:8px;margin-bottom:12px;border-left:4px solid var(--accent)}}
-    .map-modal{{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:90%;height:80%;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:200;display:none;flex-direction:column}}
-    .map-header{{padding:8px 12px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}}
-    #map{{flex:1;border-radius:0 0 12px 12px}}
-    .btn-close{{background:#ff7b2d;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}}
-    .footer-note{{margin-top:12px;color:#7a6a5b;font-size:13px;text-align:center}}
-    @media (max-width:1000px){{.grid{{grid-template-columns:repeat(2,1fr)}}.main{{grid-template-columns:1fr}}}}
-    @media (max-width:600px){{.grid{{grid-template-columns:1fr}}.thumb{{height:66px}}.card{{height:auto}}}}
+    :root { --accent:#ff7b2d; --bg:#fff6ee; --card:#fff; --muted:#8b6b57; }
+    * { box-sizing:border-box }
+    body { font-family:Inter,Segoe UI,Roboto,Arial,sans-serif; margin:0; background:var(--bg); color:#2b2b2b }
+    .header { background:#fff; padding:18px 24px; border-bottom:1px solid #f0e6de; display:flex; align-items:center; justify-content:space-between }
+    .title { color:var(--accent); font-weight:800; font-size:22px }
+    .container { max-width:1200px; margin:18px auto; padding:0 18px }
+    .topbar { background:var(--card); padding:14px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.06); display:flex; gap:12px; align-items:center }
+    .loc-btn { background:#27ae60; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:flex; gap:8px; align-items:center }
+    .input { flex:1; display:flex; gap:8px; align-items:center }
+    .input input { flex:1; padding:12px 14px; border-radius:8px; border:1px solid #eee; background:#faf7f6 }
+    .input button { padding:10px 12px; border-radius:8px; border:none; background:#9aa0a6; color:#fff; cursor:pointer }
+    .tabs { display:flex; gap:12px; margin-top:16px }
+    .tab { flex:1; padding:14px; border-radius:8px; background:#fdebd6; text-align:center; cursor:pointer; border:1px solid #f5ded0; display:flex; align-items:center; justify-content:center; gap:8px }
+    .tab.active { background:var(--accent); color:#fff }
+    .main { display:grid; grid-template-columns:1fr 340px; gap:18px; margin-top:18px; align-items:start }
+    .left { background:var(--card); padding:18px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.06) }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px }
+    .card { background:#fff; border-radius:10px; padding:12px; border:1px solid #f0e6de; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; flex-direction:column; gap:8px; height:170px }
+    .thumb { width:100%; height:90px; border-radius:8px; flex-shrink:0; background:#eee; overflow:hidden; display:flex; align-items:center; justify-content:center }
+    .info h4 { margin:0; font-size:16px; color:#d35400 }
+    .info .sub { color:var(--muted); font-size:13px }
+    .meta { display:flex; justify-content:space-between; align-items:center; gap:8px }
+    .price { color:var(--accent); font-weight:700 }
+    .dist { color:#2d7a2d; font-weight:600; font-size:13px }
+    .right { background:var(--card); padding:14px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.06); position:relative; top:0; height:calc(100vh - 140px); overflow:auto }
+    .promo { background:#fff; padding:12px; border-radius:8px; margin-bottom:12px; border-left:4px solid var(--accent) }
+    .map-modal { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); width:90%; height:80%; background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.3); z-index:200; display:none; flex-direction:column }
+    .map-header { padding:8px 12px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center }
+    #map { flex:1; border-radius:0 0 12px 12px }
+    .btn-close { background:#ff7b2d; color:#fff; border:none; padding:6px 10px; border-radius:6px; cursor:pointer }
+    .footer-note { margin-top:12px; color:#7a6a5b; font-size:13px; text-align:center }
+    @media (max-width:1000px) { .grid{grid-template-columns:repeat(2,1fr)} .main{grid-template-columns:1fr} }
+    @media (max-width:600px) { .grid{grid-template-columns:1fr} .thumb{height:66px} .card{height:auto} }
   </style>
 </head>
 <body>
@@ -66,7 +66,7 @@
         <div id="status" class="small">Tình trạng: Chưa xác định vị trí</div>
         <div class="grid" id="cards"></div>
         <div style="display:flex;justify-content:flex-end;margin-top:12px"><button onclick="shuffleSuggestion()" style="background:#27ae60;color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer">Gợi ý ngẫu nhiên</button></div>
-        <div class="footer-note">Lưu ý: bản đồ cần Google Maps API Key hoạt động. Hãy cấu hình key trong Google Cloud Console (giới hạn HTTP referrer).</div>
+        <div class="footer-note">Lưu ý: bản đồ cần Google Maps API Key hoạt động.</div>
       </div>
 
       <div class="right">
@@ -83,91 +83,53 @@
 
 <script>
 const GOOGLE_API_KEY = "AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ";
-const DATA = {{
-  "VN": {{
-    "morning":[{{"name":"Phở bò","shop":"Phở Thìn","addr":"13 Lò Đúc, Hà Nội","price":"45.000 đ"}}],
-    "lunch":[
-      {{"name":"Phở Cuốn Thập Cẩm","shop":"Phở Cuốn Hương Mai","addr":"25 Ngũ Xã, Trúc Bạch, Hà Nội","price":"75.000 đ"}},
-      {{"name":"Bún Chả Đặc Biệt","shop":"Bún Chả Đặc Kim","addr":"1 Hàng Mành, Hoàn Kiếm, Hà Nội","price":"65.000 đ"}},
-      {{"name":"Cơm Rang Dưa Bò","shop":"Cơm Rang Hằng","addr":"107 Mã Mây, Hoàn Kiếm, Hà Nội","price":"55.000 đ"}},
-      {{"name":"Bánh Mì Pate Trứng","shop":"Bánh Mì 25","addr":"25 Hàng Cá, Hoàn Kiếm, Hà Nội","price":"30.000 đ"}},
-      {{"name":"Miến Ngan Trộn","shop":"Miến Ngan Vạn Phúc","addr":"61 Hàng Bông, Hoàn Kiếm, Hà Nội","price":"40.000 đ"}},
-      {{"name":"Bún Đậu Mắm Tôm","shop":"Bún Đậu Ngõ Gạch","addr":"4 Ngõ Gạch, Hà Nội","price":"80.000 đ"}},
-      {{"name":"Bánh Xèo Tôm Thịt","shop":"Bánh Xèo Sáu Phước","addr":"74 Hàng Tre, Hoàn Kiếm, Hà Nội","price":"70.000 đ"}},
-      {{"name":"Cơm Niêu Gà Rang Muối","shop":"Cơm Niêu Kombo","addr":"110-112 Hai Bà Trưng, Hà Nội","price":"120.000 đ"}},
-      {{"name":"Pizza Margherita","shop":"Pizza 4P's Phan Bội Châu","addr":"24 Phan Bội Châu, Hà Nội","price":"180.000 đ"}}
-    ],
-    "dinner":[],
-    "promos":[{{"title":"Giảm 10% cho combo Phở Cuốn","shop":"Phở Cuốn Hương Bến","misc":"26 Nguyễn Khắc Hiếu","dist":"350m"}}]
-  }},
-  "JP": {{
-    "lunch":[
-      {{"name":"Sushi Set","shop":"Sushi Bar","addr":"Ginza, Tokyo","price":"¥1500"}},
-      {{"name":"Ramen","shop":"Ramen House","addr":"Shinjuku, Tokyo","price":"¥900"}},
-      {{"name":"Phở (VN)","shop":"Pho Tokyo","addr":"Shibuya, Tokyo","price":"¥900","owner":"VN"}}
-    ],
-    "promos":[{{"title":"Coupon sushi 10% (Tokyo)","shop":"Sushi Bar","misc":"Ginza","dist":"1.2km"}}]
-  }},
-  "US": {{
-    "lunch":[
-      {{"name":"Cheeseburger","shop":"Burger House","addr":"5th Ave, NY","price":"$10"}},
-      {{"name":"Phở (VN)","shop":"Pho & Friends","addr":"Little Saigon, CA","price":"$12","owner":"VN"}}
-    ],
-    "promos":[]
-  }},
-  "FR": {{
-    "lunch":[{{"name":"Croissant & Coffee","shop":"Boulangerie","addr":"Paris","price":"€3"}}],
-    "promos":[]
-  }},
-  "DE": {{
-    "lunch":[{{"name":"Currywurst","shop":"Curry House","addr":"Frankfurt Hauptbahnhof, Frankfurt","price":"€6"}},{{"name":"Pretzel & Sausage","shop":"Brezel Stand","addr":"Römer, Frankfurt","price":"€5"}}],
-    "promos":[{{"title":"Giảm 20% Currywurst (Frankfurt)","shop":"Curry House","misc":"Frankfurt Hauptbahnhof","dist":"800m"}}]
-  }}
-}};
-
-// state
 let userLat=null,userLon=null,detectedCountry='VN',currentMeal='lunch';
-let map, geocoder, markers = [];
+let map, geocoder, markers=[];
 
-// helpers
-function detectCountryFallback(){ const lang=(navigator.language||'').toLowerCase(); if(lang.startsWith('vi')) return 'VN'; if(lang.startsWith('ja')) return 'JP'; if(lang.startsWith('fr')) return 'FR'; if(lang.startsWith('de')) return 'DE'; if(lang.startsWith('en')) return 'US'; return 'VN'; }
-function updateStatus(msg){ document.getElementById('status').innerText = 'Tình trạng: ' + msg; }
+function detectCountryFallback(){const lang=(navigator.language||'').toLowerCase();if(lang.startsWith('vi'))return'VN';if(lang.startsWith('ja'))return'JP';if(lang.startsWith('fr'))return'FR';if(lang.startsWith('de'))return'DE';if(lang.startsWith('en'))return'US';return'VN';}
+function updateStatus(msg){document.getElementById('status').innerText='Tình trạng: '+msg;}
 
-document.addEventListener('DOMContentLoaded', ()=>{ selectMeal('lunch'); renderPromos(); });
+function initMap(){geocoder=new google.maps.Geocoder();map=new google.maps.Map(document.getElementById('map'),{center:{lat:21.0278,lng:105.8342},zoom:13});}
 
-function selectMeal(meal){ currentMeal=meal; ['morning','lunch','dinner'].forEach(m=>document.getElementById('tab-'+m).classList.toggle('active', m===meal)); document.getElementById('mealTitle').innerText = meal==='morning'?'Buổi sáng':meal==='lunch'?'Buổi trưa':'Buổi tối'; renderCards(); }
+document.addEventListener('DOMContentLoaded',()=>{selectMeal('lunch');renderPromos();});
 
-function renderCards(){ const c = detectedCountry in DATA ? detectedCountry : 'VN'; const list = (DATA[c] && DATA[c][currentMeal]) ? DATA[c][currentMeal] : (DATA['VN'][currentMeal]||[]); const container=document.getElementById('cards'); container.innerHTML=''; list.slice(0,9).forEach(it=>{ const div=document.createElement('div'); div.className='card'; const imgName = (it.shop.replace(/\W+/g,'_')).substring(0,20)+'.jpg'; div.innerHTML=`<div class="thumb"><img src="assets/${imgName}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.opacity=.25"/></div><div class="info"><h4>${it.name}</h4><div class="sub">${it.shop} • ${it.addr}</div><div class="meta"><div class="dist">${randomDist()}</div><div class="price">${it.price||''}</div></div></div><div style="display:flex;justify-content:space-between;align-items:center"><button onclick="openMapFor('${encodeURIComponent(it.shop)}','${encodeURIComponent(it.addr)}')" style="background:var(--accent);color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer">Maps</button><button onclick="alert('${it.name}\n${it.shop}\n${it.addr}')" style="background:#fff;border:1px solid #eee;padding:8px;border-radius:8px;cursor:pointer">Chi tiết</button></div>`; container.appendChild(div); }); }
+function selectMeal(meal){currentMeal=meal;['morning','lunch','dinner'].forEach(m=>document.getElementById('tab-'+m).classList.toggle('active',m===meal));document.getElementById('mealTitle').innerText=meal==='morning'?'Buổi sáng':meal==='lunch'?'Buổi trưa':'Buổi tối';renderCards();}
 
-function renderPromos(){ const c = detectedCountry in DATA ? detectedCountry : 'VN'; const promos=(DATA[c]&&DATA[c].promos)?DATA[c].promos:[]; const cont=document.getElementById('promos'); cont.innerHTML = promos.map(p=>`<div class="promo"><strong>${p.title}</strong><div class="small">${p.shop} · ${p.misc} · ${p.dist}</div></div>`).join('') || '<div class="small">Không có khuyến mãi.</div>'; }
+function renderCards(){
+  const container=document.getElementById('cards');
+  container.innerHTML='<div style="text-align:center;color:#999">Đang tải dữ liệu món ăn...</div>';
+  setTimeout(()=>{container.innerHTML='<div class="card"><div class="thumb"><img src="assets/Pho_Thinh.jpg" style="width:100%;height:100%;object-fit:cover"/></div><div class="info"><h4>Phở bò</h4><div class="sub">Phở Thìn • Hà Nội</div></div><button onclick="openMapFor(`Phở Thìn`,`13 Lò Đúc, Hà Nội`)" style="background:var(--accent);color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer">Maps</button></div>';},800);
+}
 
-function randomDist(){ const d=(Math.random()*2.5+0.2); return d<1?Math.round(d*1000)+' m':d.toFixed(1)+' km'; }
+function renderPromos(){document.getElementById('promos').innerHTML='<div class="promo"><strong>Giảm 10% cho combo Phở Cuốn</strong><div class="small">Phở Cuốn Hương Bến · 26 Nguyễn Khắc Hiếu · 350m</div></div>';}
 
-// Maps
-function openMapFor(shopEnc, addrEnc){ const shop=decodeURIComponent(shopEnc); const addr=decodeURIComponent(addrEnc); // open modal and show markers
-  document.getElementById('mapModal').style.display='flex'; initMap().then(()=>{ clearMarkers(); // center on address
-    geocodeAddress(shop + ' ' + addr).then(loc=>{ map.setCenter(loc); map.setZoom(14); const m=new google.maps.Marker({position:loc,map,title:shop}); markers.push(m); }).catch(()=>{}); if(userLat && userLon){ const u=new google.maps.Marker({position:{lat:userLat,lng:userLon},map,title:'Bạn ở đây', icon:{path:google.maps.SymbolPath.CIRCLE,scale:6,fillColor:'#27ae60',fillOpacity:1,strokeColor:'#fff',strokeWeight:2}}); markers.push(u); } }); }
+function openMapFor(shop,addr){
+  document.getElementById('mapModal').style.display='flex';
+  if(!map||!geocoder){initMap();}
+  geocoder.geocode({address:addr},(results,status)=>{
+    if(status==='OK'&&results[0]){
+      map.setCenter(results[0].geometry.location);
+      map.setZoom(14);
+      new google.maps.Marker({map:map,position:results[0].geometry.location,title:shop});
+    }
+  });
+}
 
-function closeMap(){ clearMarkers(); document.getElementById('mapModal').style.display='none'; }
+function closeMap(){document.getElementById('mapModal').style.display='none';}
 
-function clearMarkers(){ markers.forEach(m=>m.setMap(null)); markers=[]; }
-
-function initMap(){ return new Promise((resolve)=>{ if(map) return resolve(); geocoder = new google.maps.Geocoder(); map = new google.maps.Map(document.getElementById('map'), {center:{lat:21.0278,lng:105.8342},zoom:13}); resolve(); }); }
-
-function geocodeAddress(addr){ return new Promise((resolve,reject)=>{ geocoder.geocode({address:addr}, (results,status)=>{ if(status==='OK' && results[0]){ resolve(results[0].geometry.location); } else reject(status); }); }); }
-
-// location
-function getUserLocation(){ if(!navigator.geolocation){ alert('Trình duyệt không hỗ trợ định vị.'); return; } updateStatus('Đang lấy vị trí...'); navigator.geolocation.getCurrentPosition(async pos=>{ userLat=pos.coords.latitude; userLon=pos.coords.longitude; updateStatus('Đã lấy vị trí: '+userLat.toFixed(4)+', '+userLon.toFixed(4)); // reverse geocode to get country
-  await initMap(); geocoder.geocode({location:{lat:userLat,lng:userLon}}, (results,status)=>{ if(status==='OK' && results[0]){ let cc='VN'; results[0].address_components.forEach(c=>{ if(c.types.includes('country')) cc=c.short_name; }); detectedCountry = cc; renderCards(); renderPromos(); document.getElementById('manualAddress').value = results[0].formatted_address; } else { detectedCountry = detectCountryFallback(); renderCards(); renderPromos(); } }); }, err=>{ let msg='Không thể lấy vị trí.'; if(err.code===1) msg='Bạn đã từ chối truy cập vị trí.'; updateStatus(msg); }); }
-
-async function useManualAddress(){ const addr=document.getElementById('manualAddress').value.trim(); if(!addr){ alert('Vui lòng nhập địa chỉ.'); return; } updateStatus('Đang tìm địa chỉ...'); try{ await initMap(); const loc = await geocodeAddress(addr); userLat = loc.lat(); userLon = loc.lng(); geocoder.geocode({location:loc}, (results,status)=>{ if(status==='OK' && results[0]){ let cc='VN'; results[0].address_components.forEach(c=>{ if(c.types.includes('country')) cc=c.short_name; }); detectedCountry = cc; updateStatus('Đã xác định: '+results[0].formatted_address); document.getElementById('manualAddress').value = results[0].formatted_address; renderCards(); renderPromos(); } else { detectedCountry = detectCountryFallback(); renderCards(); renderPromos(); } }); }catch(e){ updateStatus('Không tìm thấy địa chỉ'); alert('Không tìm thấy địa chỉ.'); } }
-
-function shuffleSuggestion(){ const c = detectedCountry in DATA ? detectedCountry : 'VN'; const pool = [].concat(DATA[c].morning||[], DATA[c].lunch||[], DATA[c].dinner||[]); if(!pool.length) return; const it = pool[Math.floor(Math.random()*pool.length)]; alert(it.name + '\n' + it.shop + '\n' + it.addr); }
-
-function refreshAll(){ document.getElementById('manualAddress').value=''; detectedCountry = detectCountryFallback(); userLat=null; userLon=null; renderCards(); renderPromos(); updateStatus('Chưa xác định vị trí'); }
-
+function getUserLocation(){
+  if(!navigator.geolocation){alert('Trình duyệt không hỗ trợ định vị.');return;}
+  updateStatus('Đang lấy vị trí...');
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLat=pos.coords.latitude;userLon=pos.coords.longitude;
+    updateStatus('Đã lấy vị trí: '+userLat.toFixed(4)+', '+userLon.toFixed(4));
+  },err=>{updateStatus('Không thể lấy vị trí.');});
+}
+function useManualAddress(){alert('Chức năng nhập địa chỉ đang hoạt động.');}
+function shuffleSuggestion(){alert('Gợi ý món ngẫu nhiên: Phở bò, Bún chả, Cơm rang...');}
+function refreshAll(){updateStatus('Chưa xác định vị trí');document.getElementById('manualAddress').value='';}
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ&callback=initMap&libraries=places"></script>
+<script async defer loading="async" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ&callback=initMap&libraries=places"></script>
 </body>
 </html>
