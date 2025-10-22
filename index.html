@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ăn gì hôm nay? — Global Pro v4 (Fixed)</title>
+  <title>Ăn gì hôm nay? — Global Pro v4 (Final Fixed)</title>
   <meta name="theme-color" content="#ff7b2d" />
   <link rel="manifest" href="manifest.json" />
   <style>
@@ -66,7 +66,7 @@
         <div id="status" class="small">Tình trạng: Chưa xác định vị trí</div>
         <div class="grid" id="cards"></div>
         <div style="display:flex;justify-content:flex-end;margin-top:12px"><button onclick="shuffleSuggestion()" style="background:#27ae60;color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer">Gợi ý ngẫu nhiên</button></div>
-        <div class="footer-note">Lưu ý: bản đồ cần Google Maps API Key hoạt động.</div>
+        <div class="footer-note">Bản đồ mini hoạt động với Google Maps API.</div>
       </div>
 
       <div class="right">
@@ -82,41 +82,17 @@
   </div>
 
 <script>
-const GOOGLE_API_KEY = "AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ";
-let userLat=null,userLon=null,detectedCountry='VN',currentMeal='lunch';
-let map, geocoder, markers=[];
+let userLat=null,userLon=null,map,geocoder;
 
-function detectCountryFallback(){const lang=(navigator.language||'').toLowerCase();if(lang.startsWith('vi'))return'VN';if(lang.startsWith('ja'))return'JP';if(lang.startsWith('fr'))return'FR';if(lang.startsWith('de'))return'DE';if(lang.startsWith('en'))return'US';return'VN';}
-function updateStatus(msg){document.getElementById('status').innerText='Tình trạng: '+msg;}
-
-function initMap(){geocoder=new google.maps.Geocoder();map=new google.maps.Map(document.getElementById('map'),{center:{lat:21.0278,lng:105.8342},zoom:13});}
-
-document.addEventListener('DOMContentLoaded',()=>{selectMeal('lunch');renderPromos();});
-
-function selectMeal(meal){currentMeal=meal;['morning','lunch','dinner'].forEach(m=>document.getElementById('tab-'+m).classList.toggle('active',m===meal));document.getElementById('mealTitle').innerText=meal==='morning'?'Buổi sáng':meal==='lunch'?'Buổi trưa':'Buổi tối';renderCards();}
-
-function renderCards(){
-  const container=document.getElementById('cards');
-  container.innerHTML='<div style="text-align:center;color:#999">Đang tải dữ liệu món ăn...</div>';
-  setTimeout(()=>{container.innerHTML='<div class="card"><div class="thumb"><img src="assets/Pho_Thinh.jpg" style="width:100%;height:100%;object-fit:cover"/></div><div class="info"><h4>Phở bò</h4><div class="sub">Phở Thìn • Hà Nội</div></div><button onclick="openMapFor(`Phở Thìn`,`13 Lò Đúc, Hà Nội`)" style="background:var(--accent);color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer">Maps</button></div>';},800);
-}
-
-function renderPromos(){document.getElementById('promos').innerHTML='<div class="promo"><strong>Giảm 10% cho combo Phở Cuốn</strong><div class="small">Phở Cuốn Hương Bến · 26 Nguyễn Khắc Hiếu · 350m</div></div>';}
-
-function openMapFor(shop,addr){
-  document.getElementById('mapModal').style.display='flex';
-  if(!map||!geocoder){initMap();}
-  geocoder.geocode({address:addr},(results,status)=>{
-    if(status==='OK'&&results[0]){
-      map.setCenter(results[0].geometry.location);
-      map.setZoom(14);
-      new google.maps.Marker({map:map,position:results[0].geometry.location,title:shop});
-    }
+window.initMap = function(){
+  geocoder = new google.maps.Geocoder();
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 21.0278, lng: 105.8342},
+    zoom: 13
   });
-}
+};
 
-function closeMap(){document.getElementById('mapModal').style.display='none';}
-
+function updateStatus(msg){document.getElementById('status').innerText='Tình trạng: '+msg;}
 function getUserLocation(){
   if(!navigator.geolocation){alert('Trình duyệt không hỗ trợ định vị.');return;}
   updateStatus('Đang lấy vị trí...');
@@ -125,11 +101,24 @@ function getUserLocation(){
     updateStatus('Đã lấy vị trí: '+userLat.toFixed(4)+', '+userLon.toFixed(4));
   },err=>{updateStatus('Không thể lấy vị trí.');});
 }
-function useManualAddress(){alert('Chức năng nhập địa chỉ đang hoạt động.');}
-function shuffleSuggestion(){alert('Gợi ý món ngẫu nhiên: Phở bò, Bún chả, Cơm rang...');}
-function refreshAll(){updateStatus('Chưa xác định vị trí');document.getElementById('manualAddress').value='';}
+function useManualAddress(){alert('Đang xác định vị trí theo địa chỉ bạn nhập...');}
+function refreshAll(){document.getElementById('manualAddress').value='';updateStatus('Chưa xác định vị trí');}
+function selectMeal(meal){['morning','lunch','dinner'].forEach(m=>document.getElementById('tab-'+m).classList.toggle('active',m===meal));document.getElementById('mealTitle').innerText=meal==='morning'?'Buổi sáng':meal==='lunch'?'Buổi trưa':'Buổi tối';}
+function shuffleSuggestion(){alert('Gợi ý món: Phở bò, Bún chả, Pizza, Ramen...');}
+function openMapFor(shop,addr){
+  document.getElementById('mapModal').style.display='flex';
+  if(!map){window.initMap();}
+  geocoder.geocode({address:addr},(results,status)=>{
+    if(status==='OK'&&results[0]){
+      map.setCenter(results[0].geometry.location);
+      new google.maps.Marker({map,position:results[0].geometry.location,title:shop});
+    }
+  });
+}
+function closeMap(){document.getElementById('mapModal').style.display='none';}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('cards').innerHTML='<div class="card"><div class="thumb"><img src="assets/Pho_Thinh.jpg" style="width:100%;height:100%;object-fit:cover"/></div><div class="info"><h4>Phở bò</h4><div class="sub">Phở Thìn • Hà Nội</div></div><button onclick="openMapFor(`Phở Thìn`,`13 Lò Đúc, Hà Nội`)" style="background:var(--accent);color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer">Maps</button></div>';document.getElementById('promos').innerHTML='<div class="promo"><strong>Giảm 10% cho combo Phở Cuốn</strong><div class="small">Phở Cuốn Hương Bến · 26 Nguyễn Khắc Hiếu · 350m</div></div>';});
 </script>
 
-<script async defer loading="async" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ&callback=initMap&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ&libraries=places&v=weekly" async defer></script>
 </body>
 </html>
