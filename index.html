@@ -1,79 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ăn gì hôm nay? — Pro v3 (Geocoding)</title>
-<style>
-:root{--accent:#ff7b2d;--bg:#fff6ee;--card:#fff;--muted:#8b6b57;--shadow:0 8px 24px rgba(0,0,0,0.06);}
-*{box-sizing:border-box}
-body{font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;background:var(--bg);color:#2b2b2b;margin:0;padding:0}
-.header{background:#fff;padding:18px 24px;border-bottom:1px solid #f0e6de;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
-.title{color:var(--accent);font-weight:800;font-size:22px}
-.container{max-width:1240px;margin:18px auto;padding:0 18px}
-.topbar{background:var(--card);padding:14px;border-radius:10px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center}
-.loc-btn{background:#27ae60;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center}
-.input{flex:1;display:flex;gap:8px;align-items:center}
-.input input{flex:1;padding:12px 14px;border-radius:8px;border:1px solid #eee;background:#faf7f6}
-.input button{padding:10px 12px;border-radius:8px;border:none;background:#9aa0a6;color:#fff;cursor:pointer}
-.tabs{display:flex;gap:12px;margin-top:16px}
-.tab{flex:1;padding:14px;border-radius:8px;background:#fdebd6;text-align:center;cursor:pointer;border:1px solid #f5ded0;display:flex;align-items:center;justify-content:center;gap:8px}
-.tab.active{background:var(--accent);color:#fff}
-.main{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px;align-items:start}
-.left{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.card{background:#fff;border-radius:10px;padding:12px;border:1px solid #f0e6de;box-shadow:0 2px 6px rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:8px;height:170px}
-.cardTop{display:flex;gap:10px;align-items:center}
-.thumb{width:120px;height:86px;border-radius:8px;flex-shrink:0;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.info{flex:1;display:flex;flex-direction:column;justify-content:space-between}
-.info h4{margin:0;font-size:16px;color:#d35400}
-.info .sub{color:var(--muted);font-size:13px}
-.meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.meta .price{color:var(--accent);font-weight:700}
-.meta .dist{color:#2d7a2d;font-weight:600;font-size:13px}
-.controls{display:flex;justify-content:flex-end;margin-top:12px;gap:8px}
-.right{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);position:relative;top:0;height:calc(100vh - 140px);overflow:auto}
-.promo{background:#fff;padding:12px;border-radius:8px;margin-bottom:12px;border-left:4px solid var(--accent)}
-.btn-like{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
-.small{font-size:13px;color:var(--muted)}
-.view-more{display:block;margin:12px auto;padding:10px 14px;border-radius:8px;background:#eee;border:none;cursor:pointer}
-.footer-note{margin-top:12px;color:#7a6a5b;font-size:13px;text-align:center}
-.loading{color:#999;font-size:13px;padding:8px;background:#fff;border-radius:8px;border:1px solid #f0e6de;margin-bottom:10px}
-
-/* Responsive */
-@media (max-width:1100px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .main{grid-template-columns:1fr}
-  .right{height:auto;max-height:360px}
-}
-@media (max-width:600px){
-  .grid{grid-template-columns:1fr}
-  .thumb{width:90px;height:66px}
-  .card{height:auto}
-  .title{font-size:18px}
-  .input input{padding:10px}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ăn gì hôm nay? — Global Pro v4</title>
+  <meta name="theme-color" content="#ff7b2d" />
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    :root{{--accent:#ff7b2d;--bg:#fff6ee;--card:#fff;--muted:#8b6b57;}}
+    *{{box-sizing:border-box}}
+    body{{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:#2b2b2b}}
+    .header{{background:#fff;padding:18px 24px;border-bottom:1px solid #f0e6de;display:flex;align-items:center;justify-content:space-between}}
+    .title{{color:var(--accent);font-weight:800;font-size:22px}}
+    .container{{max-width:1200px;margin:18px auto;padding:0 18px}}
+    .topbar{{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);display:flex;gap:12px;align-items:center}}
+    .loc-btn{{background:#27ae60;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center}}
+    .input{{flex:1;display:flex;gap:8px;align-items:center}}
+    .input input{{flex:1;padding:12px 14px;border-radius:8px;border:1px solid #eee;background:#faf7f6}}
+    .input button{{padding:10px 12px;border-radius:8px;border:none;background:#9aa0a6;color:#fff;cursor:pointer}}
+    .tabs{{display:flex;gap:12px;margin-top:16px}}
+    .tab{{flex:1;padding:14px;border-radius:8px;background:#fdebd6;text-align:center;cursor:pointer;border:1px solid #f5ded0;display:flex;align-items:center;justify-content:center;gap:8px}}
+    .tab.active{{background:var(--accent);color:#fff}}
+    .main{{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:18px;align-items:start}}
+    .left{{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}}
+    .grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}}
+    .card{{background:#fff;border-radius:10px;padding:12px;border:1px solid #f0e6de;box-shadow:0 2px 6px rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:8px;height:170px}}
+    .thumb{{width:100%;height:90px;border-radius:8px;flex-shrink:0;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center}}
+    .info h4{{margin:0;font-size:16px;color:#d35400}}
+    .info .sub{{color:var(--muted);font-size:13px}}
+    .meta{{display:flex;justify-content:space-between;align-items:center;gap:8px}}
+    .price{{color:var(--accent);font-weight:700}}
+    .dist{{color:#2d7a2d;font-weight:600;font-size:13px}}
+    .right{{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06);position:relative;top:0;height:calc(100vh - 140px);overflow:auto}}
+    .promo{{background:#fff;padding:12px;border-radius:8px;margin-bottom:12px;border-left:4px solid var(--accent)}}
+    .map-modal{{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:90%;height:80%;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:200;display:none;flex-direction:column}}
+    .map-header{{padding:8px 12px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}}
+    #map{{flex:1;border-radius:0 0 12px 12px}}
+    .btn-close{{background:#ff7b2d;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}}
+    .footer-note{{margin-top:12px;color:#7a6a5b;font-size:13px;text-align:center}}
+    @media (max-width:1000px){{.grid{{grid-template-columns:repeat(2,1fr)}}.main{{grid-template-columns:1fr}}}}
+    @media (max-width:600px){{.grid{{grid-template-columns:1fr}}.thumb{{height:66px}}.card{{height:auto}}}}
+  </style>
 </head>
 <body>
-  <div class="header">
-    <div class="title">Ăn gì hôm nay?</div>
-    <div class="small">Pro v3 — Geocoding ON</div>
-  </div>
-
+  <div class="header"><div class="title">Ăn gì hôm nay?</div><div class="small">Pro v4</div></div>
   <div class="container">
     <div class="topbar">
       <button class="loc-btn" onclick="getUserLocation()">📍 Lấy vị trí hiện tại</button>
       <div class="input">
-        <input id="manualAddress" placeholder="Nhập địa chỉ hoặc khu vực (ví dụ: Frankfurt, Germany hoặc Hà Nội, Việt Nam)" />
+        <input id="manualAddress" placeholder="Nhập địa chỉ hoặc khu vực..." />
         <button onclick="useManualAddress()">Tìm</button>
       </div>
-      <div style="width:120px;display:flex;justify-content:flex-end">
-        <button onclick="refreshAll()" class="btn-like">Làm mới</button>
-      </div>
+      <div style="width:120px;display:flex;justify-content:flex-end"><button onclick="refreshAll()" style="background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer">Làm mới</button></div>
     </div>
 
-    <div class="tabs" style="margin-top:18px">
+    <div class="tabs">
       <div id="tab-morning" class="tab" onclick="selectMeal('morning')">🌅 Buổi sáng</div>
       <div id="tab-lunch" class="tab active" onclick="selectMeal('lunch')">☀️ Buổi trưa</div>
       <div id="tab-dinner" class="tab" onclick="selectMeal('dinner')">🌙 Buổi tối</div>
@@ -83,17 +64,9 @@ body{font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;background:var(
       <div class="left">
         <h2 id="mealTitle">Buổi trưa</h2>
         <div id="status" class="small">Tình trạng: Chưa xác định vị trí</div>
-        <div id="gridWrapper" style="margin-top:12px">
-          <div id="loading" class="loading" style="display:none">Đang xác định vị trí và tải gợi ý...</div>
-          <div class="grid" id="cards"></div>
-          <button id="viewMore" class="view-more" onclick="loadMore()">Xem thêm món</button>
-        </div>
-
-        <div class="controls" style="margin-top:14px">
-          <button class="loc-btn" onclick="shuffleSuggestion()">Gợi ý ngẫu nhiên</button>
-        </div>
-
-        <div class="footer-note">Lưu ý: để chức năng vị trí hoạt động chính xác, mở trang qua HTTP (ví dụ: http://localhost) hoặc host online.</div>
+        <div class="grid" id="cards"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:12px"><button onclick="shuffleSuggestion()" style="background:#27ae60;color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer">Gợi ý ngẫu nhiên</button></div>
+        <div class="footer-note">Lưu ý: bản đồ cần Google Maps API Key hoạt động. Hãy cấu hình key trong Google Cloud Console (giới hạn HTTP referrer).</div>
       </div>
 
       <div class="right">
@@ -103,352 +76,98 @@ body{font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;background:var(
     </div>
   </div>
 
+  <div id="mapModal" class="map-modal">
+    <div class="map-header"><div id="mapTitle">Bản đồ</div><button class="btn-close" onclick="closeMap()">Đóng</button></div>
+    <div id="map"></div>
+  </div>
+
 <script>
-/* ---------- Config ---------- */
-const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org'; // public Nominatim endpoint
-const USER_AGENT_NOTE = 'an-gi-hom-nay-app-v3'; // Nominatim policy asks for identifiable UA; browsers cannot change UA header, but referer will be sent
-// Use sessionStorage for caching geocoding responses to reduce API calls
-const GEO_CACHE_KEY = 'an_gi_geo_cache_v3';
-
-/* ---------- Helpers ---------- */
-function svgDataURI(text, bg='#fff7f0', fg='#d35400') {
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='480' height='320'><rect width='100%' height='100%' fill='${bg}'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='80' fill='${fg}'>${text}</text></svg>`;
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-}
-
-function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
-
-/* ---------- Data (sample, can expand) ---------- */
-const DATA = {
-  VN: {
-    morning:[
-      {img:svgDataURI('🍜'), name:'Phở bò', shop:'Phở Thìn', addr:'13 Lò Đúc, Hà Nội', price:'45.000 đ', owner:'VN'},
-      {img:svgDataURI('🥖'), name:'Bánh mì trứng', shop:'Bánh mì Ngon', addr:'22 Hàng Bạc, Hà Nội', price:'25.000 đ', owner:'VN'},
-      {img:svgDataURI('🍚'), name:'Xôi xéo', shop:'Xôi Cô Hằng', addr:'Ngõ 3, Hà Nội', price:'20.000 đ', owner:'VN'},
-      {img:svgDataURI('☕'), name:'Cà phê sữa đá', shop:'Cà phê Hạnh', addr:'Hàng Gai, Hà Nội', price:'18.000 đ', owner:'VN'}
+const GOOGLE_API_KEY = "AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ";
+const DATA = {{
+  "VN": {{
+    "morning":[{{"name":"Phở bò","shop":"Phở Thìn","addr":"13 Lò Đúc, Hà Nội","price":"45.000 đ"}}],
+    "lunch":[
+      {{"name":"Phở Cuốn Thập Cẩm","shop":"Phở Cuốn Hương Mai","addr":"25 Ngũ Xã, Trúc Bạch, Hà Nội","price":"75.000 đ"}},
+      {{"name":"Bún Chả Đặc Biệt","shop":"Bún Chả Đặc Kim","addr":"1 Hàng Mành, Hoàn Kiếm, Hà Nội","price":"65.000 đ"}},
+      {{"name":"Cơm Rang Dưa Bò","shop":"Cơm Rang Hằng","addr":"107 Mã Mây, Hoàn Kiếm, Hà Nội","price":"55.000 đ"}},
+      {{"name":"Bánh Mì Pate Trứng","shop":"Bánh Mì 25","addr":"25 Hàng Cá, Hoàn Kiếm, Hà Nội","price":"30.000 đ"}},
+      {{"name":"Miến Ngan Trộn","shop":"Miến Ngan Vạn Phúc","addr":"61 Hàng Bông, Hoàn Kiếm, Hà Nội","price":"40.000 đ"}},
+      {{"name":"Bún Đậu Mắm Tôm","shop":"Bún Đậu Ngõ Gạch","addr":"4 Ngõ Gạch, Hà Nội","price":"80.000 đ"}},
+      {{"name":"Bánh Xèo Tôm Thịt","shop":"Bánh Xèo Sáu Phước","addr":"74 Hàng Tre, Hoàn Kiếm, Hà Nội","price":"70.000 đ"}},
+      {{"name":"Cơm Niêu Gà Rang Muối","shop":"Cơm Niêu Kombo","addr":"110-112 Hai Bà Trưng, Hà Nội","price":"120.000 đ"}},
+      {{"name":"Pizza Margherita","shop":"Pizza 4P's Phan Bội Châu","addr":"24 Phan Bội Châu, Hà Nội","price":"180.000 đ"}}
     ],
-    lunch:[ /* ... filled in later for demo */ ],
-    dinner:[ /* ... */ ],
-    promos:[{title:'Giảm 30% Lẩu Nấm & Gà', shop:'Lẩu Nấm Gia Khánh', misc:'15 Ngõ 191 Lạc Long Quân', dist:'3.5km'}]
-  },
-  US:{ /* minimal sample */ },
-  JP:{ /* ... */ },
-  FR:{ /* ... */ }
-};
-/* for demo completeness, add some items to lunch/dinner */
-DATA.VN.lunch = DATA.VN.morning.concat([
-  {img:svgDataURI('🍛'), name:'Cơm tấm sườn', shop:'Cơm Tấm Cali', addr:'Nguyễn Trãi, Hà Nội', price:'55.000 đ', owner:'VN'},
-  {img:svgDataURI('🍜'), name:'Bún chả', shop:'Bún Chả Hương Liên', addr:'24 Lê Văn Hưu, Hà Nội', price:'45.000 đ', owner:'VN'},
-  {img:svgDataURI('🍝'), name:'Mì Quảng', shop:'Mì Quảng Bà Mua', addr:'Đà Nẵng', price:'50.000 đ'}
-]);
-DATA.VN.dinner = DATA.VN.lunch.concat([
-  {img:svgDataURI('🍲'), name:'Lẩu thái', shop:'Lẩu 5 Sao', addr:'Tôn Thất Tùng, Hà Nội', price:'150.000 đ/ng', owner:'VN'}
-]);
+    "dinner":[],
+    "promos":[{{"title":"Giảm 10% cho combo Phở Cuốn","shop":"Phở Cuốn Hương Bến","misc":"26 Nguyễn Khắc Hiếu","dist":"350m"}}]
+  }},
+  "JP": {{
+    "lunch":[
+      {{"name":"Sushi Set","shop":"Sushi Bar","addr":"Ginza, Tokyo","price":"¥1500"}},
+      {{"name":"Ramen","shop":"Ramen House","addr":"Shinjuku, Tokyo","price":"¥900"}},
+      {{"name":"Phở (VN)","shop":"Pho Tokyo","addr":"Shibuya, Tokyo","price":"¥900","owner":"VN"}}
+    ],
+    "promos":[{{"title":"Coupon sushi 10% (Tokyo)","shop":"Sushi Bar","misc":"Ginza","dist":"1.2km"}}]
+  }},
+  "US": {{
+    "lunch":[
+      {{"name":"Cheeseburger","shop":"Burger House","addr":"5th Ave, NY","price":"$10"}},
+      {{"name":"Phở (VN)","shop":"Pho & Friends","addr":"Little Saigon, CA","price":"$12","owner":"VN"}}
+    ],
+    "promos":[]
+  }},
+  "FR": {{
+    "lunch":[{{"name":"Croissant & Coffee","shop":"Boulangerie","addr":"Paris","price":"€3"}}],
+    "promos":[]
+  }},
+  "DE": {{
+    "lunch":[{{"name":"Currywurst","shop":"Curry House","addr":"Frankfurt Hauptbahnhof, Frankfurt","price":"€6"}},{{"name":"Pretzel & Sausage","shop":"Brezel Stand","addr":"Römer, Frankfurt","price":"€5"}}],
+    "promos":[{{"title":"Giảm 20% Currywurst (Frankfurt)","shop":"Curry House","misc":"Frankfurt Hauptbahnhof","dist":"800m"}}]
+  }}
+}};
 
-/* ---------- State ---------- */
-let pageIndex = 0;
-let pageSize = 9;
-let currentMeal = 'lunch';
-let userLat = null, userLon = null;
-let detectedCountry = null;
-let manualAddress = '';
-let geoCache = {};
+// state
+let userLat=null,userLon=null,detectedCountry='VN',currentMeal='lunch';
+let map, geocoder, markers = [];
 
-/* load cache */
-try{ geoCache = JSON.parse(sessionStorage.getItem(GEO_CACHE_KEY) || '{}'); }catch(e){ geoCache = {}; }
-
-/* ---------- Utility math ---------- */
-function haversine(lat1, lon1, lat2, lon2){
-  const R = 6371; // km
-  const toRad = v => v * Math.PI / 180;
-  const dLat = toRad(lat2-lat1), dLon = toRad(lon2-lon1);
-  const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2)) * Math.sin(dLon/2)*Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R*c;
-}
-
-/* ---------- Nominatim geocoding ---------- */
-async function geocodeAddress(addr){
-  if(!addr) return null;
-  const key = addr.toLowerCase();
-  if(geoCache[key]) return geoCache[key];
-  const url = `${NOMINATIM_BASE}/search?format=json&limit=1&q=${encodeURIComponent(addr)}&addressdetails=1`;
-  try{
-    const res = await fetch(url, {headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error('Không thể truy vấn geocoding');
-    const j = await res.json();
-    if(j && j.length){
-      const r = j[0];
-      const val = {lat:parseFloat(r.lat), lon:parseFloat(r.lon), address:r.display_name, details:r.address||{}};
-      geoCache[key] = val;
-      sessionStorage.setItem(GEO_CACHE_KEY, JSON.stringify(geoCache));
-      return val;
-    }
-    return null;
-  }catch(e){
-    console.error(e);
-    return null;
-  }
-}
-
-/* ---------- Reverse geocode (from coords) ---------- */
-async function reverseGeocode(lat, lon){
-  const key = `rev_${lat.toFixed(5)}_${lon.toFixed(5)}`;
-  if(geoCache[key]) return geoCache[key];
-  const url = `${NOMINATIM_BASE}/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`;
-  try{
-    const res = await fetch(url, {headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error('Reverse geocode failed');
-    const j = await res.json();
-    if(j){
-      const val = {lat:parseFloat(j.lat||lat), lon:parseFloat(j.lon||lon), address:j.display_name, details:j.address||{}};
-      geoCache[key] = val;
-      sessionStorage.setItem(GEO_CACHE_KEY, JSON.stringify(geoCache));
-      return val;
-    }
-    return null;
-  }catch(e){ console.error(e); return null; }
-}
-
-/* ---------- Country detection from Nominatim details or fallback ---------- */
-function countryCodeFromDetails(details){
-  if(!details) return null;
-  // try to get country code if provided
-  if(details.country_code) return details.country_code.toUpperCase();
-  // else map some fields
-  if(details.country) {
-    const c = details.country.toLowerCase();
-    if(c.includes('vietnam')) return 'VN';
-    if(c.includes('japan')) return 'JP';
-    if(c.includes('france')) return 'FR';
-    if(c.includes('germany')) return 'DE';
-    if(c.includes('united')) return 'US';
-  }
-  return null;
-}
-
-/* ---------- Rendering ---------- */
-document.addEventListener('DOMContentLoaded', ()=>{
-  selectMeal('lunch');
-  renderPromos();
-  updateStatus('Chưa xác định vị trí');
-});
-
+// helpers
+function detectCountryFallback(){ const lang=(navigator.language||'').toLowerCase(); if(lang.startsWith('vi')) return 'VN'; if(lang.startsWith('ja')) return 'JP'; if(lang.startsWith('fr')) return 'FR'; if(lang.startsWith('de')) return 'DE'; if(lang.startsWith('en')) return 'US'; return 'VN'; }
 function updateStatus(msg){ document.getElementById('status').innerText = 'Tình trạng: ' + msg; }
 
-function getEffectiveCountry(){
-  if(manualAddress){
-    const key = manualAddress;
-    const cached = geoCache[key.toLowerCase()];
-    if(cached && cached.details) {
-      const cc = countryCodeFromDetails(cached.details);
-      if(cc) return cc;
-    }
-    // fallback to detectedCountry if exists
-  }
-  if(detectedCountry) return detectedCountry;
-  // if online, try to detect from browser locale/timezone
-  try{
-    const lang = (navigator.language||'').toLowerCase();
-    if(lang.startsWith('vi')) return 'VN';
-    if(lang.startsWith('ja')) return 'JP';
-    if(lang.startsWith('fr')) return 'FR';
-    if(lang.startsWith('de')) return 'DE';
-    if(lang.startsWith('en')) return 'US';
-  }catch(e){}
-  return 'VN';
-}
+document.addEventListener('DOMContentLoaded', ()=>{ selectMeal('lunch'); renderPromos(); });
 
-function highlightTab(meal){
-  ['morning','lunch','dinner'].forEach(m=>{
-    const el = document.getElementById('tab-'+m);
-    if(m===meal) el.classList.add('active'); else el.classList.remove('active');
-  });
-}
+function selectMeal(meal){ currentMeal=meal; ['morning','lunch','dinner'].forEach(m=>document.getElementById('tab-'+m).classList.toggle('active', m===meal)); document.getElementById('mealTitle').innerText = meal==='morning'?'Buổi sáng':meal==='lunch'?'Buổi trưa':'Buổi tối'; renderCards(); }
 
-function selectMeal(meal){
-  pageIndex = 0;
-  currentMeal = meal;
-  highlightTab(meal);
-  document.getElementById('mealTitle').innerText = meal==='morning'?'Buổi sáng': meal==='lunch'?'Buổi trưa':'Buổi tối';
-  renderCards();
-}
+function renderCards(){ const c = detectedCountry in DATA ? detectedCountry : 'VN'; const list = (DATA[c] && DATA[c][currentMeal]) ? DATA[c][currentMeal] : (DATA['VN'][currentMeal]||[]); const container=document.getElementById('cards'); container.innerHTML=''; list.slice(0,9).forEach(it=>{ const div=document.createElement('div'); div.className='card'; const imgName = (it.shop.replace(/\W+/g,'_')).substring(0,20)+'.jpg'; div.innerHTML=`<div class="thumb"><img src="assets/${imgName}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.opacity=.25"/></div><div class="info"><h4>${it.name}</h4><div class="sub">${it.shop} • ${it.addr}</div><div class="meta"><div class="dist">${randomDist()}</div><div class="price">${it.price||''}</div></div></div><div style="display:flex;justify-content:space-between;align-items:center"><button onclick="openMapFor('${encodeURIComponent(it.shop)}','${encodeURIComponent(it.addr)}')" style="background:var(--accent);color:#fff;border:none;padding:8px;border-radius:8px;cursor:pointer">Maps</button><button onclick="alert('${it.name}\n${it.shop}\n${it.addr}')" style="background:#fff;border:1px solid #eee;padding:8px;border-radius:8px;cursor:pointer">Chi tiết</button></div>`; container.appendChild(div); }); }
 
-/* Render 9 cards per page; prioritize VN-owned when not in VN */
-function renderCards(){
-  const country = getEffectiveCountry();
-  const list = (DATA[country] && DATA[country][currentMeal]) ? DATA[country][currentMeal].slice() : (DATA['VN'][currentMeal]||[]).slice();
-  let priority = [];
-  if(country !== 'VN'){
-    list.forEach(i=>{ if(i.owner==='VN') priority.push(i); });
-    if(priority.length===0) priority = (DATA['VN'][currentMeal]||[]).slice(0,2);
-  }
-  const merged = [...priority, ...list.filter(i=>!priority.includes(i))];
-  // compute page
-  const start = pageIndex * pageSize;
-  const pageItems = merged.slice(start, start+pageSize);
-  const container = document.getElementById('cards');
-  container.innerHTML = pageItems.map(it=>{
-    const dist = computeDistanceString(it);
-    return `<div class="card">
-      <div class="cardTop"><div class="thumb"><img src="${it.img}" alt="${it.name}" style="width:100%;height:100%;object-fit:cover" /></div>
-      <div class="info"><h4>${it.name}</h4><div class="sub">${it.shop} • ${it.addr}</div><div class="meta"><div class="dist">${dist}</div><div class="price">${it.price||''}</div></div></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <button class="btn-like" onclick="openMaps('${encodeURIComponent(it.shop+' '+it.addr)}')">Maps</button>
-        <button style="background:#fff;border:1px solid #eee;padding:8px;border-radius:8px;cursor:pointer" onclick="showDetail('${encodeURIComponent(JSON.stringify(it))}')">Chi tiết</button>
-      </div>
-    </div>`;
-  }).join('');
-  // show/hide view more
-  const mergedLength = merged.length;
-  document.getElementById('viewMore').style.display = (start + pageSize < mergedLength) ? 'block' : 'none';
-}
+function renderPromos(){ const c = detectedCountry in DATA ? detectedCountry : 'VN'; const promos=(DATA[c]&&DATA[c].promos)?DATA[c].promos:[]; const cont=document.getElementById('promos'); cont.innerHTML = promos.map(p=>`<div class="promo"><strong>${p.title}</strong><div class="small">${p.shop} · ${p.misc} · ${p.dist}</div></div>`).join('') || '<div class="small">Không có khuyến mãi.</div>'; }
 
-/* compute distance string using haversine if we have user coords, else random */
-function computeDistanceString(item){
-  let dKm;
-  if(userLat && userLon && item._coords && item._coords.lat && item._coords.lon){
-    dKm = haversine(userLat,userLon, item._coords.lat, item._coords.lon);
-  } else if(userLat && userLon){
-    // bias to nearer distances if user location exists
-    dKm = (Math.random()*2.0 + 0.2);
-  } else {
-    dKm = (Math.random()*3.5 + 0.5);
-  }
-  if(dKm < 1) return Math.round(dKm*1000) + ' m';
-  return dKm.toFixed(1) + ' km';
-}
+function randomDist(){ const d=(Math.random()*2.5+0.2); return d<1?Math.round(d*1000)+' m':d.toFixed(1)+' km'; }
 
-function loadMore(){ pageIndex++; renderCards(); document.getElementById('gridWrapper').scrollIntoView({behavior:'smooth'}); }
+// Maps
+function openMapFor(shopEnc, addrEnc){ const shop=decodeURIComponent(shopEnc); const addr=decodeURIComponent(addrEnc); // open modal and show markers
+  document.getElementById('mapModal').style.display='flex'; initMap().then(()=>{ clearMarkers(); // center on address
+    geocodeAddress(shop + ' ' + addr).then(loc=>{ map.setCenter(loc); map.setZoom(14); const m=new google.maps.Marker({position:loc,map,title:shop}); markers.push(m); }).catch(()=>{}); if(userLat && userLon){ const u=new google.maps.Marker({position:{lat:userLat,lng:userLon},map,title:'Bạn ở đây', icon:{path:google.maps.SymbolPath.CIRCLE,scale:6,fillColor:'#27ae60',fillOpacity:1,strokeColor:'#fff',strokeWeight:2}}); markers.push(u); } }); }
 
-function showDetail(encoded){
-  try {
-    const it = JSON.parse(decodeURIComponent(encoded));
-    alert(`${it.name}\n${it.shop}\n${it.addr}\nGiá: ${it.price || 'Tham khảo'}${it.owner==='VN' ? '\nQuán người Việt' : ''}`);
-  } catch(e){ console.error(e); }
-}
+function closeMap(){ clearMarkers(); document.getElementById('mapModal').style.display='none'; }
 
-function openMaps(q){
-  if(!navigator.onLine){ alert('Cần kết nối Internet để mở bản đồ.'); return; }
-  window.open('https://www.google.com/maps/search/?api=1&query='+q,'_blank');
-}
+function clearMarkers(){ markers.forEach(m=>m.setMap(null)); markers=[]; }
 
-/* Promotions panel */
-function renderPromos(){
-  const country = getEffectiveCountry();
-  const promos = (DATA[country] && DATA[country].promos) ? DATA[country].promos : (DATA['VN'].promos || []);
-  const cont = document.getElementById('promos');
-  cont.innerHTML = promos.map(p=>`<div class="promo"><strong>${p.title}</strong><div class="small">${p.shop} · ${p.misc} · ${p.dist}</div></div>`).join('') || '<div class="small">Không có khuyến mãi.</div>';
-}
+function initMap(){ return new Promise((resolve)=>{ if(map) return resolve(); geocoder = new google.maps.Geocoder(); map = new google.maps.Map(document.getElementById('map'), {center:{lat:21.0278,lng:105.8342},zoom:13}); resolve(); }); }
 
-/* ---------- Actions: geolocation and manual address ---------- */
-async function getUserLocation(){
-  if(!navigator.geolocation){ alert('Trình duyệt không hỗ trợ định vị. Vui lòng nhập địa chỉ thủ công.'); return; }
-  updateStatus('Đang lấy vị trí...');
-  try{
-    navigator.geolocation.getCurrentPosition(async pos=>{
-      userLat = pos.coords.latitude; userLon = pos.coords.longitude;
-      // reverse geocode to find country & address
-      const rev = await reverseGeocode(userLat,userLon);
-      if(rev){
-        detectedCountry = countryCodeFromDetails(rev.details) || detectedCountry;
-        manualAddress = rev.address || manualAddress;
-        document.getElementById('manualAddress').value = rev.address;
-        updateStatus(`Đã lấy vị trí: ${rev.address}`);
-      } else {
-        updateStatus(`Đã lấy tọa độ: ${userLat.toFixed(5)}, ${userLon.toFixed(5)}`);
-      }
-      pageIndex=0; renderCards(); renderPromos();
-    }, err=>{
-      let msg='Không thể lấy vị trí.';
-      if(err.code===1) msg='Bạn đã từ chối quyền vị trí. Vui lòng bật quyền hoặc nhập địa chỉ.';
-      if(err.code===2) msg='Không thể xác định vị trí. Hãy thử nhập địa chỉ thủ công.';
-      if(err.code===3) msg='Yêu cầu vị trí quá thời gian. Thử lại.';
-      updateStatus(msg);
-      alert(msg);
-    }, {enableHighAccuracy:true, timeout:10000});
-  }catch(e){
-    console.error(e);
-    updateStatus('Lỗi khi lấy vị trí');
-  }
-}
+function geocodeAddress(addr){ return new Promise((resolve,reject)=>{ geocoder.geocode({address:addr}, (results,status)=>{ if(status==='OK' && results[0]){ resolve(results[0].geometry.location); } else reject(status); }); }); }
 
-async function useManualAddress(){
-  const addr = document.getElementById('manualAddress').value.trim();
-  if(!addr){ alert('Vui lòng nhập địa chỉ.'); return; }
-  updateStatus('Đang tìm địa chỉ...');
-  document.getElementById('loading').style.display='block';
-  // check cache first
-  const cached = geoCache[addr.toLowerCase()];
-  if(cached){
-    manualAddress = addr;
-    detectedCountry = countryCodeFromDetails(cached.details) || detectedCountry;
-    if(cached.lat && cached.lon){ userLat = cached.lat; userLon = cached.lon; }
-    updateStatus('Đã xác định: ' + (cached.address || addr));
-    document.getElementById('loading').style.display='none';
-    pageIndex=0; renderCards(); renderPromos();
-    return;
-  }
-  // call Nominatim geocode
-  try{
-    const g = await geocodeAddress(addr);
-    document.getElementById('loading').style.display='none';
-    if(!g){
-      updateStatus('Không tìm thấy địa chỉ. Hiển thị mặc định.');
-      alert('Không tìm thấy vị trí. Vui lòng thử lại với địa chỉ đầy đủ hoặc bật vị trí GPS.');
-      manualAddress = addr; pageIndex=0; renderCards(); renderPromos();
-      return;
-    }
-    manualAddress = addr;
-    detectedCountry = countryCodeFromDetails(g.details) || detectedCountry;
-    if(g.lat && g.lon){ userLat = g.lat; userLon = g.lon; }
-    updateStatus('Đã xác định: ' + (g.address || addr));
-    pageIndex=0; renderCards(); renderPromos();
-  }catch(e){
-    console.error(e);
-    document.getElementById('loading').style.display='none';
-    updateStatus('Lỗi khi tìm địa chỉ');
-    alert('Lỗi khi tìm địa chỉ. Vui lòng thử lại.');
-  }
-}
+// location
+function getUserLocation(){ if(!navigator.geolocation){ alert('Trình duyệt không hỗ trợ định vị.'); return; } updateStatus('Đang lấy vị trí...'); navigator.geolocation.getCurrentPosition(async pos=>{ userLat=pos.coords.latitude; userLon=pos.coords.longitude; updateStatus('Đã lấy vị trí: '+userLat.toFixed(4)+', '+userLon.toFixed(4)); // reverse geocode to get country
+  await initMap(); geocoder.geocode({location:{lat:userLat,lng:userLon}}, (results,status)=>{ if(status==='OK' && results[0]){ let cc='VN'; results[0].address_components.forEach(c=>{ if(c.types.includes('country')) cc=c.short_name; }); detectedCountry = cc; renderCards(); renderPromos(); document.getElementById('manualAddress').value = results[0].formatted_address; } else { detectedCountry = detectCountryFallback(); renderCards(); renderPromos(); } }); }, err=>{ let msg='Không thể lấy vị trí.'; if(err.code===1) msg='Bạn đã từ chối truy cập vị trí.'; updateStatus(msg); }); }
 
-/* ---------- Search and shuffle ---------- */
-function shuffleSuggestion(){
-  const country = getEffectiveCountry();
-  const dataset = DATA[country] || DATA['VN'];
-  const pool = [].concat(dataset.morning||[], dataset.lunch||[], dataset.dinner||[]);
-  if(!pool.length) return;
-  const item = pool[Math.floor(Math.random()*pool.length)];
-  document.getElementById('cards').innerHTML = `<div class="card"><div class="cardTop"><div class="thumb"><img src="${item.img}" style="width:100%;height:100%;object-fit:cover" /></div><div class="info"><h4>${item.name}</h4><div class="sub">${item.shop} • ${item.addr}</div><div class="meta"><div class="dist">${computeDistanceString(item)}</div><div class="price">${item.price||''}</div></div></div></div><div style="display:flex;justify-content:space-between;align-items:center"><button class="btn-like" onclick="openMaps('${encodeURIComponent(item.shop+' '+item.addr)}')">Maps</button></div></div>`;
-  document.getElementById('viewMore').style.display='none';
-}
+async function useManualAddress(){ const addr=document.getElementById('manualAddress').value.trim(); if(!addr){ alert('Vui lòng nhập địa chỉ.'); return; } updateStatus('Đang tìm địa chỉ...'); try{ await initMap(); const loc = await geocodeAddress(addr); userLat = loc.lat(); userLon = loc.lng(); geocoder.geocode({location:loc}, (results,status)=>{ if(status==='OK' && results[0]){ let cc='VN'; results[0].address_components.forEach(c=>{ if(c.types.includes('country')) cc=c.short_name; }); detectedCountry = cc; updateStatus('Đã xác định: '+results[0].formatted_address); document.getElementById('manualAddress').value = results[0].formatted_address; renderCards(); renderPromos(); } else { detectedCountry = detectCountryFallback(); renderCards(); renderPromos(); } }); }catch(e){ updateStatus('Không tìm thấy địa chỉ'); alert('Không tìm thấy địa chỉ.'); } }
 
-/* ---------- Utilities ---------- */
-function refreshAll(){
-  manualAddress=''; document.getElementById('manualAddress').value=''; detectedCountry = detectCountryCode(); pageIndex=0; renderCards(); renderPromos(); updateStatus('Chưa xác định vị trí');
-}
+function shuffleSuggestion(){ const c = detectedCountry in DATA ? detectedCountry : 'VN'; const pool = [].concat(DATA[c].morning||[], DATA[c].lunch||[], DATA[c].dinner||[]); if(!pool.length) return; const it = pool[Math.floor(Math.random()*pool.length)]; alert(it.name + '\n' + it.shop + '\n' + it.addr); }
 
-/* ---------- Small detector fallback ---------- */
-function detectCountryCode(){
-  try{
-    const lang = (navigator.language||'').toLowerCase();
-    const tz = (Intl && Intl.DateTimeFormat) ? Intl.DateTimeFormat().resolvedOptions().timeZone || '' : '';
-    if(lang.startsWith('vi')) return 'VN';
-    if(lang.startsWith('ja')) return 'JP';
-    if(lang.startsWith('fr')) return 'FR';
-    if(lang.startsWith('de')) return 'DE';
-    if(lang.startsWith('en')){
-      if(tz.includes('Tokyo')) return 'JP';
-      if(tz.includes('Paris')) return 'FR';
-      if(tz.includes('America/')) return 'US';
-      return 'US';
-    }
-    if(tz.includes('Asia/Tokyo')) return 'JP';
-    if(tz.includes('Europe/Paris')) return 'FR';
-    return 'VN';
-  }catch(e){ return 'VN'; }
-}
+function refreshAll(){ document.getElementById('manualAddress').value=''; detectedCountry = detectCountryFallback(); userLat=null; userLon=null; renderCards(); renderPromos(); updateStatus('Chưa xác định vị trí'); }
 
 </script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KKa4ysubldgYy00jXdD_8vrJJdhRfCQ&callback=initMap&libraries=places"></script>
 </body>
 </html>
